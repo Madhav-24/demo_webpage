@@ -2,6 +2,7 @@ type NavIconProps = {
   name: string
 }
 
+/** Selects the small inline SVG used by a dashboard navigation item. */
 export function NavIcon({ name }: NavIconProps) {
   if (name === 'Dashboard') {
     return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="14" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><rect x="14" y="14" width="6" height="6" rx="1" /></svg>

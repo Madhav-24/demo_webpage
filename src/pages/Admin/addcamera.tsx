@@ -7,12 +7,18 @@ type AddCameraPageProps = {
   onAdd: (camera: NewCamera) => void
 }
 
+/**
+ * Registers cameras for the current dashboard session and shows the entries
+ * submitted from this form without requiring a server-side data store.
+ */
 export function AddCameraPage({ onAdd }: AddCameraPageProps) {
   const [form, setForm] = useState<NewCamera>({ number: '', site: '', chainage: '', stream: '' })
   const [submitted, setSubmitted] = useState<Camera[]>([])
 
+  /** Publish the form data to the dashboard and reset the entry form. */
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    // Use the same session identifier shape as the dashboard camera list.
     const camera = { ...form, id: Date.now() }
     onAdd(form)
     setSubmitted((current) => [...current, camera])
