@@ -5,5 +5,5 @@ import { defineConfig } from 'vite'
 // React's Vite plugin supplies JSX transformation and development tooling.
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VITE_BASE_URL || '/demo_webpage',
+  base: process.env.VITE_BASE_PATH || "/demo_webpage",
 })
