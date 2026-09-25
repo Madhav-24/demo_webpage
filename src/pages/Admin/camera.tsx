@@ -12,6 +12,7 @@ type CameraViewerProps = {
   onClose: () => void
 }
 
+/** Lists registered cameras and opens the selected camera viewer. */
 export function CameraPage({ cameras, onSelect }: CameraPageProps) {
   return (
     <section className="dashboard-content page-surface">
@@ -34,6 +35,10 @@ function CameraCard({ camera, onSelect }: { camera: Camera; onSelect: (camera: C
   </button>
 }
 
+/**
+ * Full-screen camera viewer. A configured stream is embedded directly;
+ * cameras without a stream use the local preview so they remain inspectable.
+ */
 export function CameraViewer({ camera, onClose }: CameraViewerProps) {
   const [zoom, setZoom] = useState(1)
 
@@ -47,10 +52,15 @@ export function CameraViewer({ camera, onClose }: CameraViewerProps) {
   </div>
 }
 
+/** Provides a visual fallback when the camera has no stream URL configured. */
 function StreamPlaceholder({ camera }: { camera: Camera }) {
   return <div className="stream-placeholder"><span className="camera-card__live"><i /> Live preview</span><NavIcon name="Camera" /><strong>{camera.site}</strong><small>{camera.chainage} <span>•</span> {camera.number}</small></div>
 }
 
+/**
+ * Presents PTZ controls. Only zoom changes application state because pan and
+ * tilt are visual controls until a camera-control service is connected.
+ */
 function PtzControls({ zoom, onZoomChange }: { zoom: number; onZoomChange: (value: number) => void }) {
   return <div className="ptz-controls">
     <strong>Pan / Tilt / Zoom</strong>

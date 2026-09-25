@@ -6,6 +6,11 @@ type PasswordFieldProps = {
   hasError?: boolean
 }
 
+/**
+ * Controlled password input with an accessible visibility toggle.
+ * Visibility is kept local because it affects presentation only and should
+ * not become part of the credentials submitted by the parent form.
+ */
 export function PasswordField({ value, onChange, hasError = false }: PasswordFieldProps) {
   const [isVisible, setIsVisible] = useState(false)
 

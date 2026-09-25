@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
+/* Shared design tokens and browser normalization for all application views. */
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #14263d;
@@ -25,6 +26,7 @@ button { cursor: pointer; }
   background: #0c325d;
 }
 
+/* The backdrop and wash create a readable branded surface behind the form. */
 .login-page__backdrop {
   position: absolute;
   inset: 0;
@@ -78,6 +80,7 @@ h1 { margin: 0; color: #122a47; font: 600 clamp(25px, 3vw, 32px)/1.12 'Space Gro
 .page-footer { position: absolute; bottom: 24px; color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: .04em; }
 
 .dashboard-page { min-height: 100vh; display: flex; background: #f5f8fb; }
+/* The sidebar remains the dashboard's primary navigation surface on desktop. */
 .dashboard-sidebar { width: 232px; min-height: 100vh; display: flex; flex-direction: column; padding: 27px 16px 20px; color: #c7d7e8; background: #082e59; }
 .dashboard-sidebar__brand { display: flex; align-items: center; gap: 12px; padding: 0 12px 34px; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 10px; line-height: 1.5; letter-spacing: .04em; }
 .dashboard-sidebar__brand .lt-logo--compact { flex-shrink: 0; }
@@ -142,6 +145,7 @@ h1 { margin: 0; color: #122a47; font: 600 clamp(25px, 3vw, 32px)/1.12 'Space Gro
 .camera-card { overflow: hidden; border: 1px solid #dce5ee; border-radius: 3px; padding: 0; color: inherit; background: #fff; text-align: left; transition: transform .2s, box-shadow .2s; }.camera-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(23,60,93,.12); }
 .camera-card__preview { position: relative; height: 145px; display: grid; place-items: center; overflow: hidden; color: #a9cde4; background: linear-gradient(135deg, #092f55, #17618d); }.camera-card__preview::before { content: ''; position: absolute; inset: 0; opacity: .2; background-image: linear-gradient(135deg, transparent 50%, #7ec2df 50%, transparent 51%), linear-gradient(45deg, transparent 50%, #7ec2df 50%, transparent 51%); background-size: 34px 34px; }.camera-card__preview svg { position: relative; width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1; }.camera-card__live { position: absolute; top: 12px; left: 13px; z-index: 1; color: #dbf3e4; font-size: 10px; }.camera-card__open { position: absolute; right: 13px; bottom: 12px; color: #d5e8f4; font-size: 10px; }.camera-card__details { display: flex; justify-content: space-between; gap: 10px; padding: 16px; }.camera-card__details div { display: grid; gap: 5px; }.camera-card__details strong { color: #1d4262; font-size: 12px; }.camera-card__details span, .camera-card__details b { color: #8495a6; font-size: 10px; font-weight: 500; }.camera-card__details b { white-space: nowrap; }
 .camera-viewer { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 38px; background: rgba(3, 19, 35, .96); animation: card-in .25s ease-out both; }.camera-viewer__close { position: absolute; top: 24px; left: 26px; z-index: 2; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.35); border-radius: 3px; color: #fff; background: rgba(255,255,255,.08); font-size: 17px; }.camera-viewer__close:hover { background: rgba(255,255,255,.18); }
+/* PTZ controls float over the viewer so operators can access them without leaving the stream. */
 .camera-viewer__stream { position: relative; width: min(100%, 900px); aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #34637f; background: #061d32; box-shadow: 0 20px 70px rgba(0,0,0,.35); }.camera-viewer__stream iframe { width: 100%; height: 100%; border: 0; }.stream-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; color: #95bed5; background: radial-gradient(circle at 50% 35%, #1a5576, #071e34 65%); }.stream-placeholder .camera-card__live { top: 17px; left: 18px; }.stream-placeholder svg { width: 68px; height: 68px; fill: none; stroke: currentColor; stroke-width: 1; }.stream-placeholder strong { color: #eef8fc; font: 600 20px 'Space Grotesk', sans-serif; }.stream-placeholder small { color: #8daabd; font-size: 11px; }.stream-placeholder small span { padding: 0 7px; color: #3aa378; }.camera-viewer__label { position: absolute; right: 16px; bottom: 14px; left: 16px; display: flex; justify-content: space-between; color: #d6e8f2; font-size: 10px; }.camera-viewer__label span:last-child { color: #9fe0ba; }
 .ptz-controls { position: absolute; right: 38px; bottom: 38px; display: flex; align-items: center; gap: 17px; border: 1px solid rgba(255,255,255,.17); border-radius: 3px; padding: 13px 16px; color: #bed2df; background: rgba(8,39,62,.92); }.ptz-controls > strong { color: #fff; font-size: 10px; font-weight: 600; white-space: nowrap; }.ptz-pad { display: grid; grid-template-columns: repeat(3, 28px); grid-template-rows: repeat(2, 28px); gap: 3px; }.ptz-pad button, .zoom-controls button { border: 1px solid rgba(255,255,255,.18); color: #d9eaf2; background: rgba(255,255,255,.06); font-size: 15px; }.ptz-pad button:first-child { grid-column: 2; }.ptz-pad button:nth-child(2) { grid-column: 1; grid-row: 2; }.ptz-pad button:nth-child(3) { grid-column: 3; grid-row: 2; }.ptz-pad button:nth-child(4) { grid-column: 2; grid-row: 3; }.ptz-pad button:hover, .zoom-controls button:hover { background: #17618d; }.zoom-controls { display: flex; align-items: center; gap: 7px; }.zoom-controls button { padding: 7px 9px; font-size: 10px; }.zoom-controls span { min-width: 36px; color: #83b4cb; font-size: 10px; text-align: center; }
 

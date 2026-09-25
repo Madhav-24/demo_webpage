@@ -4,6 +4,10 @@ type LtLogoProps = {
   compact?: boolean
 }
 
+/**
+ * Shared L&T branding component used in both the login and dashboard shells.
+ * The compact variant is intended for navigation areas with limited width.
+ */
 export function LtLogo({ compact = false }: LtLogoProps) {
   return (
     <div className={`lt-logo${compact ? ' lt-logo--compact' : ''}`} aria-label="Larsen & Toubro">

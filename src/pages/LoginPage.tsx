@@ -7,14 +7,23 @@ type LoginPageProps = {
   onLogin: () => void
 }
 
+/**
+ * Login screen for the monitoring application.
+ *
+ * Credentials are validated locally because this frontend currently has no
+ * backend authentication integration; successful validation notifies the
+ * application shell through the supplied callback.
+ */
 export function LoginPage({ onLogin }: LoginPageProps) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
+  /** Validate the demo credentials and expose a user-facing error on failure. */
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (username === 'admin' && password === 'Admin') {
+      // Let the application shell switch to the dashboard after validation.
       onLogin()
       return
     }
